@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Aleena ❤️</title>
+
+<style>
+
+/* MOBILE FIRST ROMANTIC DESIGN */
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(180deg, #ff9a9e, #ff6a88);
+    color: white;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+.container {
+    padding: 20px;
+    max-width: 480px;
+    margin: auto;
+}
+
+.title {
+    font-size: 2.2rem;
+    margin-top: 20px;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.subtitle {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+.cake {
+    font-size: 70px;
+    margin: 15px 0;
+    animation: bounce 1.5s infinite;
+}
+
+/* SLIDESHOW */
+
+.slideshow {
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.slide {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 20px;
+    display: none;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+}
+
+/* LOVE NOTES */
+
+.note {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(8px);
+    border-radius: 15px;
+    padding: 15px;
+    margin-top: 20px;
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+/* FALLING ROSES */
+
+.rose {
+    position: fixed;
+    top: -50px;
+    font-size: 22px;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh);
+    }
+}
+
+@keyframes bounce {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.footer {
+    margin-top: 30px;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1 class="title">Happy Birthday Aleena ❤️</h1>
+
+<p class="subtitle">To the most special person in my life</p>
+
+<div class="cake">🎂</div>
+
+<!-- SLIDESHOW -->
+
+<div class="slideshow">
+
+<img class="slide" src="photo1.jpg">
+<img class="slide" src="photo2.jpg">
+<img class="slide" src="photo3.jpg">
+<img class="slide" src="photo4.jpg">
+<img class="slide" src="photo5.jpg">
+
+</div>
+
+<!-- LOVE NOTES -->
+
+<div class="note">
+You are not just a part of my life,
+You are the reason my days feel brighter.
+Your smile makes everything better.
+</div>
+
+<div class="note">
+Every moment with you feels special.
+I am grateful to have you in my life.
+I wish you happiness, success,
+and endless love today and always.
+</div>
+
+<div class="note">
+Happy Birthday my love ❤️
+May all your dreams come true.
+I will always be there for you.
+</div>
+
+<div class="footer">
+Made with love ❤️
+</div>
+
+</div>
+
+<script>
+
+/* PASSWORD LOCK */
+
+let password = "";
+
+while (password !== "JA") {
+    password = prompt("Enter the password to open your birthday surprise ❤️");
+}
+
+/* SLIDESHOW */
+
+let slideIndex = 0;
+
+function showSlides() {
+
+    const slides = document.getElementsByClassName("slide");
+
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+
+    slideIndex++;
+
+    if (slideIndex > slides.length) {
+        slideIndex = 1;
+    }
+
+    slides[slideIndex - 1].style.display = "block";
+
+    setTimeout(showSlides, 3000);
+}
+
+showSlides();
+
+/* FALLING ROSES */
+
+function createRose() {
+
+    const rose = document.createElement("div");
+
+    rose.classList.add("rose");
+
+    rose.innerHTML = "🌹";
+
+    rose.style.left = Math.random() * window.innerWidth + "px";
+
+    rose.style.animationDuration = (Math.random() * 3 + 2) + "s";
+
+    document.body.appendChild(rose);
+
+    setTimeout(() => {
+        rose.remove();
+    }, 5000);
+}
+
+setInterval(createRose, 300);
+
+
+/* SWIPEABLE SLIDESHOW (MOBILE) */
+
+let startX = 0;
+
+const slideshow = document.querySelector('.slideshow');
+
+slideshow.addEventListener('touchstart', function(e) {
+    startX = e.touches[0].clientX;
+});
+
+slideshow.addEventListener('touchend', function(e) {
+    let endX = e.changedTouches[0].clientX;
+
+    if (startX - endX > 50) {
+        nextSlide();
+    }
+
+    if (endX - startX > 50) {
+        prevSlide();
+    }
+});
+
+function nextSlide() {
+    slideIndex++;
+    showSlidesManual();
+}
+
+function prevSlide() {
+    slideIndex--;
+    showSlidesManual();
+}
+
+function showSlidesManual() {
+
+    const slides = document.getElementsByClassName("slide");
+
+    if (slideIndex > slides.length) slideIndex = 1;
+    if (slideIndex < 1) slideIndex = slides.length;
+
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+
+    slides[slideIndex - 1].style.display = "block";
+}
+
+
+/* FIREWORKS ANIMATION */
+
+const canvas = document.createElement('canvas');
+canvas.style.position = 'fixed';
+canvas.style.top = 0;
+canvas.style.left = 0;
+canvas.style.pointerEvents = 'none';
+document.body.appendChild(canvas);
+
+const ctx = canvas.getContext('2d');
+
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+let particles = [];
+
+function createFirework() {
+
+    let x = Math.random() * canvas.width;
+    let y = Math.random() * canvas.height / 2;
+
+    for (let i = 0; i < 30; i++) {
+
+        particles.push({
+            x: x,
+            y: y,
+            dx: (Math.random() - 0.5) * 6,
+            dy: (Math.random() - 0.5) * 6,
+            life: 60
+        });
+    }
+}
+
+function updateFireworks() {
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (let i = particles.length - 1; i >= 0; i--) {
+
+        let p = particles[i];
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+        ctx.fillStyle = 'white';
+        ctx.fill();
+
+        p.x += p.dx;
+        p.y += p.dy;
+        p.life--;
+
+        if (p.life <= 0) {
+            particles.splice(i, 1);
+        }
+    }
+
+    requestAnimationFrame(updateFireworks);
+}
+
+setInterval(createFirework, 1200);
+updateFireworks();
+
+</script>
+
+</body>
+</html>
